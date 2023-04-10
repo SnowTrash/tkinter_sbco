@@ -23,6 +23,8 @@ python3 init.py # create db file
 python3 main.py # run App
 ```
 
+> default username and password is admin
+
 ## Docs
 ### Forked From
     https://github.com/jksdou/tkinter-gui-application-examples
@@ -36,5 +38,3 @@ python3 main.py # run App
 
 ### customtkinter
     https://github.com/TomSchimansky/CustomTkinter
-
-> default username and password is admin

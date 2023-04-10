@@ -7,21 +7,21 @@ from lib.functions import set_window_center
 
 
 class Init(gui.Toplevel):
-    """用户详情窗口"""
+    """Detalles de Usuario"""
 
     def __init__(self, user_info=None):
         gui.Toplevel.__init__(self)
         self.current = user_info
-        self.win_title = "用户详情"
+        self.win_title = "Información del Usuario"
         self.title(self.win_title)
         set_window_center(self, 200, 300)
         self.resizable(False, False)
         self.init_page()
 
     def init_page(self):
-        """加载控件"""
+        """Generando elementos del Frame"""
         gui.Label(self, text="title").pack(expand=gui.YES, fill=gui.BOTH)
-        msg = gui.Label(self, text="你好你好你好你好")
+        msg = gui.Label(self, text="你好你好 ñola")
         msg.pack(expand=gui.YES, fill=gui.BOTH)
         msg = gui.Message(self, text=self.current, width=150)
         msg.pack()

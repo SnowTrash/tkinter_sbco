@@ -10,44 +10,44 @@ from lib.functions import treeview_sort_column
 from pages import win_user_edit, win_user_info, winContentEdit, winContentInfo
 
 
-class HomeFrame(Frame):  # 继承Frame类
-    """应用主界面"""
+class HomeFrame(Frame):  # Heredado de Frame
+    """UI principal"""
 
     def __init__(self, parent=None):
         Frame.__init__(self, parent)
-        self.root = parent  # 定义内部变量root
+        self.root = parent  # Definimos el root de la variable interna
         self.init_page()
 
     def init_page(self):
-        """加载控件"""
-        Label(self, text="用户:").pack()
+        """Cargar elementos al Frame"""
+        Label(self, text="Usuario:").pack()
 
-        Label(self, text="欢迎" + str(global_variable.get_variable("CURRENT_USER_NAME"))).pack()
-        Button(self, text="查看").pack()
+        Label(self, text="Bienvenido --> " + str(global_variable.get_variable("CURRENT_USER_NAME"))+ "<--").pack()
+        Button(self, text="Ver").pack()
 
 
 class ContentAdd(Frame):
-    """文章添加"""
+    """Añadir Artículo"""
 
     def __init__(self, parent=None):
         Frame.__init__(self, parent)
-        self.root = parent  # 定义内部变量root
+        self.root = parent  # Definimos la pestaña actual como raíz
         self.content_title = StringVar()
         self.content_textarea = None
         self.content_tag = StringVar()
         self.init_page()
 
     def init_page(self):
-        """加载控件"""
+        """Cargando Página"""
         Label(self).grid(row=0, stick="w", pady=10)
 
-        lb1 = Label(self, text="标题: ")
+        lb1 = Label(self, text="Título: ")
         lb1.grid(row=1, stick="w", pady=10)
 
         et1 = Entry(self, textvariable=self.content_title)
         et1.grid(row=1, column=1, stick="we")
 
-        lb2 = Label(self, text="内容: ")
+        lb2 = Label(self, text="Contenido: ")
         lb2.grid(row=2, stick="nw", pady=10)
 
         et2 = scrolledtext.ScrolledText(
@@ -61,17 +61,17 @@ class ContentAdd(Frame):
         et2.grid(row=2, column=1, ipadx=10, stick="nswe")
         self.content_textarea = et2
 
-        lb3 = Label(self, text="标签: ")
+        lb3 = Label(self, text="etiqueta: ")
         lb3.grid(row=3, stick="w", pady=10)
 
         et3 = Entry(self, textvariable=self.content_tag)
         et3.grid(row=3, column=1, columnspan=2, stick="we")
 
-        bt1 = Button(self, text="添加", command=self.do_add)
+        bt1 = Button(self, text="Añadir", command=self.do_add)
         bt1.grid(row=6, column=1, stick="e", pady=10)
 
     def do_add(self):
-        """添加文章"""
+        """Añadir Artículo"""
         title = self.content_title.get()
         content = self.content_textarea.get(0.0, "end")
         tag = self.content_tag.get()
@@ -82,13 +82,13 @@ class ContentAdd(Frame):
             self.content_tag.set("")
             self.content_textarea.delete(1.0, "end")  # 清空
             self.content_textarea.update()
-            messagebox.showinfo(title="成功", message="添加成功")
+            messagebox.showinfo(title="Éxito", message="Agregado a DB correctamente")
         else:
-            messagebox.showinfo(title="错误", message="添加失败")
+            messagebox.showinfo(title="Error", message="Error en el Update-add")
 
 
 class ContentList(Frame):
-    """文章列表"""
+    """Lista de Artículos"""
 
     def __init__(self, parent=None):
         Frame.__init__(self, parent)
@@ -101,38 +101,38 @@ class ContentList(Frame):
         self.init_page()
 
     def init_page(self):
-        """加载控件"""
+        """Creando página"""
 
         username = str(global_variable.get_variable("CURRENT_USER_NAME"))
         self.list = dbcontent.content_list_by_username(username)
 
-        head_frame = LabelFrame(self, text="文章操作")
+        head_frame = LabelFrame(self, text="Listado de artículos")
         head_frame.grid(row=0, column=0, columnspan=2, sticky="nswe")
         Label(head_frame, textvariable=self.selected_name).pack()
 
-        btn_info = Button(head_frame, text="详情", command=self.info)
+        btn_info = Button(head_frame, text="Detalles", command=self.info)
         btn_info.pack(side="left")
-        btn_edit = Button(head_frame, text="编辑", command=self.edit)
+        btn_edit = Button(head_frame, text="Editar", command=self.edit)
         btn_edit.pack(side="left")
-        btn_delete = Button(head_frame, text="删除", command=self.delete)
+        btn_delete = Button(head_frame, text="Borrar", command=self.delete)
         btn_delete.pack(side="left")
 
-        # 表格
+        # 表格 ¿¿Hoja??
         self.tree_view = ttk.Treeview(self, show="headings")
 
         self.tree_view["columns"] = ("id", "title", "content", "tag")
-        # 列设置
+        # 列设置 Configuración de columna
         self.tree_view.column("id", width=100)
         # self.tree_view.column("title", width=100)
         # self.tree_view.column("content", width=100)
         # self.tree_view.column("tag", width=100)
-        # 显示表头
+        # 显示表头 Mostramos el encabezado
         self.tree_view.heading("id", text="ID")
         self.tree_view.heading("title", text="标题")
         self.tree_view.heading("content", text="内容")
         self.tree_view.heading("tag", text="标签")
 
-        # 插入数据
+        # 插入数据 Insertamos los datos
         num = 1
         for item in self.list:
             self.tree_view.insert(
@@ -141,11 +141,11 @@ class ContentList(Frame):
                 text="",
                 values=(item["id"], item["title"], item["content"], item["tag"]),
             )
-        # 选中行
+        # 选中行 Selecionamos la fila
         self.tree_view.bind("<<TreeviewSelect>>", self.select)
 
-        # 排序
-        for col in self.tree_view["columns"]:  # 给所有标题加
+        # 排序 Seleccionamos la columna
+        for col in self.tree_view["columns"]:  # 给所有标题加 Recorremos y agregamos los encabezados
             self.tree_view.heading(
                 col,
                 text=col,
