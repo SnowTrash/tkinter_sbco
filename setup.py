@@ -5,6 +5,8 @@ Usage:
     python setup.py py2app
 """
 
+# Creo que este archivo sirve para generar la aplicación y ahi se agregan los detaies
+
 from setuptools import setup
 
 APP = ["main.py"]

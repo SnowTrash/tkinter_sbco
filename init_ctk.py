@@ -4,7 +4,7 @@
 #Modificando UI con customtkinter
 
 import tkinter.messagebox
-from tkinter import CENTER
+from tkinter import CENTER,StringVar
 
 import customtkinter
 customtkinter.set_appearance_mode("dark")  # Modes: system (default), light, dark
@@ -12,12 +12,11 @@ customtkinter.set_default_color_theme("dark-blue")
 
 from customtkinter import CTk,CTkButton,CTkLabel
 
-
 from lib.functions import set_window_center
 from lib.sqlite_helper import DBHelper
 
-#importamos la app
-from main import App
+#importamos la app con el prefijo de CustomTkinter
+from main_ctk import App
 
 
 class InitWindow(CTk):
@@ -26,7 +25,9 @@ class InitWindow(CTk):
     def __init__(self):
         CTk.__init__(self)
         self.title("Inicializando Datos")
-        set_window_center(self, 300, 180)
+        self.w = 400
+        self.h = 400
+        set_window_center(self, 200, 180)
         self.resizable(False, False)
         self.win_success = None # Bandera de Inicialización exitosa
         self.init_page()
@@ -53,7 +54,6 @@ class InitWindow(CTk):
             print("Agregar usuario-admin:", tmp)
             print("Agregar contenido:", tmp2)
             print("consulta:", tmp3)
-            text_var = tkinter.StringVar(value="Inicialización exitosa")
             self.do_success()
             self.destroy()
         except KeyError:
@@ -70,18 +70,20 @@ class InitWindow(CTk):
 
     def do_success(self):
         """Inicialización Exitosa chinyi"""
-        text_var = tkinter.StringVar(value="Inicialización exitosa")
+        text_var = StringVar(value="Base de datos creada con éxito")
         self.win_success = CTk()
-        self.win_success.title("Base de datos creada con éxito")
+        self.win_success.title("Inicialización Exitosa")
+        self.win_success.w = 400
+        self.win_success.h = 400
         set_window_center(self.win_success, 250, 150)
         self.win_success.resizable(False, False)
         msg = CTkLabel(master=self.win_success,
-                               textvariable="Inicializacion exitosa",
+                               textvariable=text_var,
                                width=120,
                                height=25,
                                fg_color=("white", "gray75"),
                                corner_radius=8)
-        msg.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+        msg.place(relx=0.5, rely=0.5, anchor=CENTER)
 
         #msg.pack(expand="yes", fill="both")
 
@@ -93,7 +95,7 @@ class InitWindow(CTk):
                                  corner_radius=8,
                                  text="OK",
                                  command=self.quit)
-        button1.place(relx=0.24, rely=0.75, anchor=tkinter.CENTER)
+        button1.place(relx=0.24, rely=0.75, anchor=CENTER)
 
        # btn = Button(self.win_success, text="OK", command=self.quit)
        # btn.pack(side="right", padx=10, pady=10, ipadx=5, ipady=5)
@@ -106,7 +108,7 @@ class InitWindow(CTk):
                                  corner_radius=8,
                                  text="Iniciar el programa",
                                  command=self.open_app)
-        button2.place(relx=0.75, rely=0.75, anchor=tkinter.CENTER)
+        button2.place(relx=0.75, rely=0.75, anchor=CENTER)
 
         #btn_open_app = Button(self.win_success, text="Iniciar el programa", command=self.open_app)
         #btn_open_app.pack(side="right", padx=10, pady=10, ipadx=5, ipady=5)

@@ -17,20 +17,8 @@ glv.set_variable("APP_NAME", "Application")
 glv.set_variable("APP_PATH", os.path.dirname(__file__))  # 当前目录 Directorio actual
 glv.set_variable("DATA_DIR", "data")
 
-class App(Tk):
-    """Application Class"""
-
-    def __init__(self):
-
-        win_splah_ctk.Splah()
-        Tk.__init__(self)
-
-        # 登录窗口 Login Window
-        win_login_ctk.Login(self)
-
-        self.mainloop()
-
 class App(CTk):
+    """Application Class"""
     def __init__(self):
 
         win_splah_ctk.Splah() # Arreglar transparencias y estilos
