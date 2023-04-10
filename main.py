@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-"""程序入口文件"""
+
+"""程序入口文件 Archivo Principal del programa"""
 
 import os
 from tkinter import Tk
@@ -8,10 +9,10 @@ from tkinter import Tk
 import lib.global_variable as glv
 from pages import win_login, win_splah
 
-# Load global variable management module
+# Load global variable management module 
 glv.init_global_variable()
 glv.set_variable("APP_NAME", "Application")
-glv.set_variable("APP_PATH", os.path.dirname(__file__))  # 当前目录
+glv.set_variable("APP_PATH", os.path.dirname(__file__))  # 当前目录 Directorio actual
 glv.set_variable("DATA_DIR", "data")
 
 
@@ -23,7 +24,7 @@ class App(Tk):
         win_splah.Splah()
         Tk.__init__(self)
 
-        # Login Window
+        # 登录窗口 Login Window
         win_login.Login(self)
 
         self.mainloop()

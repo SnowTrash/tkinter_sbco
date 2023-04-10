@@ -1,3 +1,5 @@
+# Los comentarios al final de los renglones con strings "xxxx"
+# que definen textos del front-end, son strings originales en chino 
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
@@ -16,7 +18,7 @@ class Login():
             MainPage(master)
         else:
             self.root = master
-            self.root.title("Ingrese a su cuenta")
+            self.root.title("Login")
             set_window_center(self.root, 300, 180)
             # Definimos variables
             self.username = StringVar()

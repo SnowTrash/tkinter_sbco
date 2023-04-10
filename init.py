@@ -34,7 +34,7 @@ class InitWindow(Tk):
         db_helper.create_database()
         try:
             tmp = db_helper.insert_user("admin", "admin")  # Usuario predeterminado
-            tmp2 = db_helper.insert_content_by_username(
+            tmp2 = db_helper.insert_content_by_username(   # Insertamos una filona
                 "admin",
                 "Hello World !",
                 "Codigo fuente：https://github.com/SnowTrash/tkinter_sbco",
