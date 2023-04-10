@@ -9,7 +9,7 @@ from tkinter import Tk
 from customtkinter import CTk
 
 import lib.global_variable as glv
-from pages import win_login, win_splah
+from pages import win_login_ctk, win_splah_ctk
 
 # Load global variable management module 
 glv.init_global_variable()
@@ -22,12 +22,22 @@ class App(Tk):
 
     def __init__(self):
 
-        win_splah.Splah()
+        win_splah_ctk.Splah()
         Tk.__init__(self)
 
         # 登录窗口 Login Window
-        win_login.Login(self)
+        win_login_ctk.Login(self)
 
+        self.mainloop()
+
+class App(CTk):
+    def __init__(self):
+
+        win_splah_ctk.Splah() # Arreglar transparencias y estilos
+        CTk.__init__(self)
+
+        # 登录窗口 Login Window
+        win_login_ctk.Login(self) # Utilizar CustomTkinter
         self.mainloop()
 
 if __name__ == "__main__":

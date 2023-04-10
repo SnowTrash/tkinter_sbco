@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding:utf-8-*-
 
+
 import tkinter.messagebox
 from tkinter import Button, Label, Tk
 
@@ -79,7 +80,6 @@ class InitWindow(Tk):
         self.win_success.quit()
 
         App()
-
 
 if __name__ == "__main__":
     APP_INIT = InitWindow()

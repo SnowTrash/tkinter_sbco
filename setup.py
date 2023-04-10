@@ -8,7 +8,7 @@ Usage:
 from setuptools import setup
 
 APP = ["main.py"]
-APP_NAME = "应用程序"
+APP_NAME = "Solicitud?Ggg" # 应用程序
 APP_VERSION = "0.0.1"
 DATA_FILES = ["lib", "data", "components", "pages"]
 OPTIONS = {
@@ -21,7 +21,7 @@ OPTIONS = {
         "CFBundleIdentifier": "com.crogram.osx.application",
         "CFBundleVersion": APP_VERSION,
         "CFBundleShortVersionString": APP_VERSION,
-        "NSHumanReadableCopyright": "Copyright © 2018, Crogram, Inc., All Rights Reserved",
+        "NSHumanReadableCopyright": "Copyright © 2023, CUCEI Inc. , All Rights Reserved",
     },
 }
 

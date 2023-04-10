@@ -38,3 +38,4 @@ python3 main.py # run App
 
 ### customtkinter
     https://github.com/TomSchimansky/CustomTkinter
+#### probado en python 3.10.9
